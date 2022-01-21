@@ -1,0 +1,34 @@
+{
+  "compileOnSave": false,
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    // Compiler settings
+    "baseUrl": "./",
+    "declaration": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "Node",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "target": "ESNext",
+    "lib": [
+      "ESNext", "DOM"
+    ],
+
+    // Style, strict compiler flags
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    // ^ alwaysStrict,
+    //   strictNullChecks,
+    //   strictBindCallApply,
+    //   strictFunctionTypes,
+    //   strictPropertyInitialization,
+    //   noImplicitAny,
+    //   noImplicitThis
+  }
+}
