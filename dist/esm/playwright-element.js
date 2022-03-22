@@ -102,8 +102,7 @@ export class PlaywrightElement {
      */
     text(options) {
         if (options) { }
-        const result = this.locator.textContent();
-        return result;
+        return this.locator.textContent();
     }
     /**
      * Gets the value for the given attribute from the element.
