@@ -94,7 +94,7 @@ export class PlaywrightElement {
         else {
             throw new Error('Not sure how to send TestKey...');
         }
-        return this.locator.type(text);
+        return this.locator.fill(text);
     }
     /**
      * Gets the text from the element.
