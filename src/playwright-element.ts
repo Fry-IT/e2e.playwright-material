@@ -116,7 +116,7 @@ export class PlaywrightElement implements TestElement {
    */
   sendKeys(...keys: (string | TestKey)[]): Promise<void>;
   sendKeys(modifiers: ModifierKeys, ...keys: (string | TestKey)[]): Promise<void>
-  sendKeys(...modifiersAndKeys: unknown[]): Promise < void> {
+  sendKeys(...modifiersAndKeys: unknown[]): Promise <void> {
     if ((modifiersAndKeys ?? []).length === 0) return new Promise<void>(() => { return; });
 
     let text = '';
@@ -126,7 +126,7 @@ export class PlaywrightElement implements TestElement {
       throw new Error('Not sure how to send TestKey...');
     }
 
-    return this.locator.type(text);
+    return this.locator.fill(text);
   }
 
   /**
@@ -135,8 +135,7 @@ export class PlaywrightElement implements TestElement {
    */
   text(options?: TextOptions): Promise<string> {
     if (options) {}
-    const result = this.locator.textContent() as Promise<string>;
-    return result;
+    return this.locator.textContent() as Promise<string>;
   }
 
   /**

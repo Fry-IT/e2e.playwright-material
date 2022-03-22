@@ -1,6 +1,6 @@
 {
   "name": "@fry/playwright-material",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Playwright support for Angular material test harnesses.",
   "author": "Pavel Kunc",
   "license": "ISC",
