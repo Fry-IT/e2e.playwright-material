@@ -1,45 +1,49 @@
 {
-  "name": "@fry/playwright-material",
+  "author": "Pavel Kunc <pavel@fry-it.com>",
+  "name": "@fry-it/e2e.playwright-material",
   "version": "1.0.1",
   "description": "Playwright support for Angular material test harnesses.",
-  "author": "Pavel Kunc",
-  "license": "ISC",
-  "keywords": [],
-  "repository": {
-    "type": "git",
-    "url": "git@bitbucket.com:fry/playwright-material.git"
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
   },
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "type": "module",
   "exports": {
-    ".": "./dist/esm/index.js"
+    ".": "./dist/index.js"
   },
   "files": [
     "dist/"
   ],
-  "engines": {
-    "node": ">=16.0.0"
+  "module": "dist/index.js",
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fry-IT/e2e.playwright-material.git"
   },
+  "bugs": {
+    "url": "https://github.com/Fry-IT/e2e.playwright-material/issues"
+  },
+  "homepage": "https://github.com/Fry-IT/e2e.playwright-material#readme",
   "scripts": {
-    "build:cjs": "node tools/cleanup cjs && tsc -p tsconfig.cjs.json",
-    "build:esm": "node tools/cleanup esm && tsc -p tsconfig.esm.json",
-    "build:types": "node tools/cleanup types && tsc -p tsconfig.types.json",
-    "build": "npm run build:esm && npm run build:types",
-    "clean": "node tools/cleanup",
+    "build": "npm rn clean && tsc",
+    "clean": "rm -rf ./dist",
     "lint": "eslint . --ext .ts,.tsx",
     "package": "npm run build && npm pack",
     "test": "jest --no-cache --runInBand"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
+    "eslint-plugin-import": "*",
+    "typescript": "^4.0.0"
   },
   "peerDependencies": {
     "@angular/material": "^13.0.0",
     "playwright": "^1.0.0"
   },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^8.0.0",
-    "eslint-plugin-import": "^2.25.4",
-    "typescript": "^4.0.0"
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
