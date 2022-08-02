@@ -31,7 +31,7 @@
     "lint": "eslint . --ext .ts,.tsx",
     "package": "npm run build && npm pack",
     "test": "jest --no-cache --runInBand",
-    "postversion": "git push && git push --tags && npm clean"
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@types/node": "*",
