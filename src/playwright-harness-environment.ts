@@ -1,6 +1,7 @@
-import { PlaywrightElement } from './playwright-element.js';
-import { Locator, Page } from 'playwright';
 import { HarnessEnvironment, TestElement, HarnessLoader } from '@angular/cdk/testing';
+import { Locator, Page } from 'playwright';
+
+import { PlaywrightElement } from './playwright-element.js';
 
 /**
  * Options to configure the environment.
