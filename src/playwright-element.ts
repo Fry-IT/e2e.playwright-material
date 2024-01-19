@@ -20,14 +20,14 @@ export class PlaywrightElement implements TestElement {
    * Blur the element.
    */
   blur(): Promise<void> {
-    return this.locator.evaluate(e => e.blur());
+    return this.locator.blur();
   }
 
   /**
    * Clear the element's input (for input and textarea elements only).
    */
   clear(): Promise<void> {
-    return this.locator.fill('');
+    return this.locator.clear({ force: true })
   }
 
   /**
@@ -135,7 +135,7 @@ export class PlaywrightElement implements TestElement {
    */
   text(options?: TextOptions): Promise<string> {
     if (options) {}
-    return this.locator.textContent() as Promise<string>;
+    return this.locator.textContent();
   }
 
   /**
@@ -166,6 +166,10 @@ export class PlaywrightElement implements TestElement {
    * Gets the value of a property of an element.
    */
   async getProperty<T = unknown>(name: string): Promise<T> {
+    if (name === 'value') {
+      return this.locator.inputValue() as T;
+    }
+
     const handle = await this.locator.evaluateHandle('document');
     return (await handle.getProperty(name)).jsonValue() as Promise<T>;
   }
