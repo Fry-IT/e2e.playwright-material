@@ -33,8 +33,6 @@ export class PlaywrightHarnessEnvironment extends HarnessEnvironment<Locator> {
     this._options = { ...defaultEnvironmentOptions, ...options };
   }
 
-  static hello() { return; }
-
   /** Creates a `HarnessLoader` rooted at the document root. */
   static loader(page: Page, options?: PlaywrightHarnessEnvironmentOptions): HarnessLoader {
     const result = new PlaywrightHarnessEnvironment(page.locator('body'), options);
