@@ -42,7 +42,7 @@
     "typescript": "*"
   },
   "peerDependencies": {
-    "@angular/material": "*",
+    "@angular/material": "17.x.x",
     "playwright": "*"
   },
   "publishConfig": {
