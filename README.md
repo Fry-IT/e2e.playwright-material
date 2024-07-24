@@ -14,7 +14,7 @@ have permission to read/write packages to be able to publish the new
 version.
 
 ```
-npm run build
 npm version major|minor|patch
+npm run build
 npm publish
 ```
