@@ -91,13 +91,8 @@ export class PlaywrightHarnessEnvironment extends HarnessEnvironment<Locator> {
    * Gets a list of all elements matching the given selector under this
    * environment's root element.
    */
-  protected async getAllRawElements(selector: string): Promise<Locator[]> {
-    const elementArrayFinder = this._options.queryFn(selector, this.rawRootElement);
-    const length = await elementArrayFinder.count();
-    const elements: Locator[] = [];
-    for (let i = 0; i < length; i++) {
-      elements.push(elementArrayFinder.nth(i));
-    }
-    return elements;
+  protected getAllRawElements(selector: string): Promise<Locator[]> {
+    const elementsLocator = this._options.queryFn(selector, this.rawRootElement);
+    return elementsLocator.all();
   }
 }
