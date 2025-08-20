@@ -168,6 +168,15 @@ export class PlaywrightElement implements TestElement {
   }
 
   /**
+    * Sets the value of a `contenteditable` element.
+    * @param value Value to be set on the element.
+    * @breaking-change 16.0.0 Will become a required method.
+    */
+  setContenteditableValue?(value: string): Promise<void> {
+    return this.locator.pressSequentially(value);
+  }
+
+  /**
    * Gets the value for the given attribute from the element.
    */
   getAttribute(name: string): Promise<string | null> {
