@@ -207,8 +207,9 @@ export class PlaywrightElement implements TestElement {
    * Checks whether this element matches the given selector.
    */
   async matchesSelector(selector: string): Promise<boolean> {
-    const count = await this.locator.locator(selector).count();
-    return count > 0;
+    return this.locator.evaluate((el, sel) => {
+      return el.matches(sel);
+    }, selector);
   }
 
   /**
