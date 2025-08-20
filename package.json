@@ -1,7 +1,7 @@
 {
   "author": "Pavel Kunc <pavel@fry-it.com>",
   "name": "@fry-it/e2e.playwright-material",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Playwright support for Angular material test harnesses.",
   "license": "MIT",
   "engines": {
