@@ -6,8 +6,9 @@ import {
   TestKey,
   TextOptions,
 } from '@angular/cdk/testing';
-
 import { Locator } from 'playwright';
+
+import { playwrightKeyFromTextKey } from './playwright-testkeys.js';
 
 /**
  * A `TestElement` implementation for Playwright.
@@ -116,17 +117,45 @@ export class PlaywrightElement implements TestElement {
    */
   sendKeys(...keys: (string | TestKey)[]): Promise<void>;
   sendKeys(modifiers: ModifierKeys, ...keys: (string | TestKey)[]): Promise<void>
-  sendKeys(...modifiersAndKeys: unknown[]): Promise <void> {
-    if ((modifiersAndKeys ?? []).length === 0) return new Promise<void>(() => { return; });
+  async sendKeys(...modifiersAndKeys: unknown[]): Promise<void> {
+    let modifiers: ModifierKeys = {};
+    let keys: (string | TestKey)[] = [];
 
-    let text = '';
-    if (typeof modifiersAndKeys[0] === 'string') {
-      text = modifiersAndKeys.join('');
+    if (modifiersAndKeys.length > 0 && typeof modifiersAndKeys[0] !== 'string' && typeof modifiersAndKeys[0] !== 'number') {
+        modifiers = modifiersAndKeys[0] as ModifierKeys;
+        keys = modifiersAndKeys.slice(1) as (string | TestKey)[];
     } else {
-      throw new Error('Not sure how to send TestKey...');
+        keys = modifiersAndKeys as (string | TestKey)[];
     }
 
-    return this.locator.fill(text);
+    // If there are no modifiers, we can use a simpler, more efficient approach.
+    const hasModifiers = Object.values(modifiers).some(v => v);
+    if (!hasModifiers) {
+      for (const key of keys) {
+        typeof key === 'string'
+          ? await this.locator.pressSequentially(key)
+          : await this.locator.press(playwrightKeyFromTextKey(key as TestKey));
+      }
+
+      return;
+    }
+
+    // When modifiers are active, we must build the "accelerator" string
+    // and use locator.press() for every key.
+    let prefix = '';
+    if (modifiers.control) prefix += 'Control+';
+    if (modifiers.alt) prefix += 'Alt+';
+    if (modifiers.shift) prefix += 'Shift+';
+    if (modifiers.meta) prefix += 'Meta+';
+
+    for (const key of keys) {
+      const keyString = typeof key === 'string' 
+                        ? key 
+                        : playwrightKeyFromTextKey(key as TestKey);
+      
+      // locator.press() handles multi-character strings like 'Control+Shift+T'
+      await this.locator.press(`${prefix}${keyString}`);
+    }
   }
 
   /**
