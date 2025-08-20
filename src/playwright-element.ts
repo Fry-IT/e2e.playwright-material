@@ -188,7 +188,7 @@ export class PlaywrightElement implements TestElement {
   async getDimensions(): Promise<ElementDimensions> {
     const box = await this.locator.boundingBox();
     if (box === null) return { top: 0, left: 0, height: 0, width: 0 };
-    return { top: box?.y, left: box?.x, height: box?.height, width: box?.width };
+    return { top: box.y, left: box.x, height: box.height, width: box.width };
   }
 
   /**
