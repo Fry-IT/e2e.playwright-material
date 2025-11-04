@@ -33,6 +33,11 @@
     "test": "jest --no-cache --runInBand",
     "postversion": "git push && git push --tags"
   },
+  "dependencies": {
+    "@angular/compiler": "20.x.x",
+    "@angular/material": "20.x.x",
+    "playwright": "*"
+  },
   "devDependencies": {
     "@types/node": "*",
     "@typescript-eslint/eslint-plugin": "*",
@@ -40,10 +45,6 @@
     "eslint": "*",
     "eslint-plugin-import": "*",
     "typescript": "*"
-  },
-  "peerDependencies": {
-    "@angular/material": "20.x.x",
-    "playwright": "*"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
