@@ -1,7 +1,10 @@
 import { HarnessEnvironment, TestElement, HarnessLoader } from '@angular/cdk/testing';
 import { Locator, Page } from 'playwright';
-
 import { PlaywrightElement } from './playwright-element.js';
+
+function isPlaywrightPage(pageOrLocator: Page|Locator): pageOrLocator is Page {
+  return (pageOrLocator as Page).context !== undefined;
+}
 
 /**
  * Options to configure the environment.
@@ -34,9 +37,19 @@ export class PlaywrightHarnessEnvironment extends HarnessEnvironment<Locator> {
   }
 
   /** Creates a `HarnessLoader` rooted at the document root. */
-  static loader(page: Page, options?: PlaywrightHarnessEnvironmentOptions): HarnessLoader {
-    const result = new PlaywrightHarnessEnvironment(page.locator('body'), options);
-    result.documentRootLocator = page.locator('body');
+  static loader(root: Page|Locator, options?: PlaywrightHarnessEnvironmentOptions): HarnessLoader {
+
+    // This is currently here to provide a compatibility with existing
+    // code which does not interact with P4B which would require the iFrame content frame.
+    // Existing code assumes passing a page and extract a body locator from it, new code
+    // passes a locator directly based on the product using FryWorld#getRootForPage()
+    // and FryWorld#getOrCreateRootForKey().
+    if (isPlaywrightPage(root)) {
+      root = root.locator('body');
+    }
+
+    const result = new PlaywrightHarnessEnvironment(root, options);
+    result.documentRootLocator = root;
     return result;
   }
 
