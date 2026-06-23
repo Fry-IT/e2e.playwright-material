@@ -162,17 +162,16 @@ export class PlaywrightElement implements TestElement {
    * Gets the text from the element.
    * @param options Options that affect what text is included.
    */
-  text(options?: TextOptions): Promise<string> {
+  async text(options?: TextOptions): Promise<string> {
     if (options) {}
-    return this.locator.textContent();
+    return (await this.locator.textContent()) ?? '';
   }
 
   /**
     * Sets the value of a `contenteditable` element.
     * @param value Value to be set on the element.
-    * @breaking-change 16.0.0 Will become a required method.
     */
-  setContenteditableValue?(value: string): Promise<void> {
+  setContenteditableValue(value: string): Promise<void> {
     return this.locator.pressSequentially(value);
   }
 
