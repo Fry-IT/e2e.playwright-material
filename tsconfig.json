@@ -5,9 +5,11 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "lib": [ "ESNext", "DOM" ],
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "types": [ "node" ],
     "outDir": "./dist",
+    "rootDir": "./src",
     "paths": {
       "src/*": [
         "./src/*"

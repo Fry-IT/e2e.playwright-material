@@ -5,7 +5,7 @@
   "description": "Playwright support for Angular material test harnesses.",
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=24.13.0"
   },
   "exports": {
     ".": "./dist/index.js"
@@ -34,15 +34,15 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "@angular/compiler": "20.x.x",
-    "@angular/material": "20.x.x",
+    "@angular/compiler": "22.x.x",
+    "@angular/material": "22.x.x",
     "playwright": "*"
   },
   "devDependencies": {
-    "@types/node": "*",
+    "@types/node": "24.x.x",
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
-    "eslint": "*",
+    "eslint": "9.x.x",
     "eslint-plugin-import": "*",
     "typescript": "*"
   },
